@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Ashoka Iceland Bakery 🎂 Rajapalayam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#0A0500;--bg2:#120800;--bg3:#1A0D00;
+  --gold:#F5A623;--gold2:#FFD700;--gold3:#FFF3C4;
+  --brown:#4A2800;--brown2:#6B3D0A;
+  --cream:#FFF8EE;--cream2:#FFE9CC;
+  --accent:#E8722A;--accent2:#FF9A4A;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{background:var(--bg);color:var(--cream);font-family:'Inter',sans-serif;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+
+#prog{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--accent),var(--gold2));z-index:9999;width:0;transition:width .1s}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:900;display:flex;align-items:center;justify-content:space-between;padding:20px 40px;transition:all .3s}
+nav.s{padding:12px 40px;background:rgba(10,5,0,.92);backdrop-filter:blur(24px);border-bottom:1px solid rgba(245,166,35,.1);box-shadow:0 4px 40px rgba(0,0,0,.5)}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-icon{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--accent));display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 0 20px rgba(245,166,35,.5)}
+.logo-text .n{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;background:linear-gradient(135deg,var(--gold2),var(--cream));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.logo-text .s{font-size:.6rem;color:rgba(255,248,238,.4);letter-spacing:.25em;text-transform:uppercase}
+.nav-links{display:flex;gap:30px}
+.nav-links a{font-size:.82rem;color:rgba(255,248,238,.5);transition:color .2s;letter-spacing:.05em}
+.nav-links a:hover{color:var(--gold)}
+.btn-nav{background:linear-gradient(135deg,var(--gold),var(--accent));color:#000;font-weight:700;font-size:.8rem;padding:10px 22px;border-radius:50px;border:none;cursor:pointer;transition:transform .2s,box-shadow .2s;box-shadow:0 0 24px rgba(245,166,35,.4)}
+.btn-nav:hover{transform:scale(1.06);box-shadow:0 0 40px rgba(245,166,35,.7)}
+
+#hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+#canvas{position:absolute;inset:0;z-index:0}
+.hero-layers{position:absolute;inset:0;z-index:1}
+.hl{position:absolute;border-radius:50%;pointer-events:none}
+.hl1{width:900px;height:900px;top:50%;left:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(245,166,35,.12) 0%,transparent 60%);animation:pulse 4s ease-in-out infinite}
+.hl2{width:500px;height:500px;top:20%;left:10%;background:radial-gradient(circle,rgba(232,114,42,.08) 0%,transparent 65%);animation:pulse 6s ease-in-out infinite 1s}
+.hl3{width:400px;height:400px;bottom:15%;right:8%;background:radial-gradient(circle,rgba(255,215,0,.07) 0%,transparent 65%);animation:pulse 5s ease-in-out infinite 2s}
+@keyframes pulse{0%,100%{opacity:.5;transform:scale(1) translate(-50%,-50%)}50%{opacity:1;transform:scale(1.15) translate(-50%,-50%)}}
+@keyframes pulse2{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.12)}}
+.hl2,.hl3{animation-name:pulse2}
+.floater{position:absolute;pointer-events:none;animation:float 7s ease-in-out infinite;font-size:3rem;filter:drop-shadow(0 10px 30px rgba(0,0,0,.5));z-index:2}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-25px) rotate(5deg)}}
+.hero-content{position:relative;z-index:3;padding:0 24px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.3);border-radius:50px;padding:8px 22px;font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold2);margin-bottom:28px;animation:fadeUp .8s ease both}
+.badge-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);animation:blink 1.5s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.hero-h1{font-family:'Playfair Display',serif;font-size:clamp(3.5rem,11vw,9rem);line-height:.9;letter-spacing:-.01em;animation:fadeUp .9s .1s ease both}
+.hero-h1 .t1{display:block;color:var(--cream)}
+.hero-h1 .t2{display:block;background:linear-gradient(135deg,var(--gold),var(--accent2),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-style:italic;font-size:clamp(2rem,6vw,5.5rem);margin:.1em 0}
+.hero-h1 .t3{display:block;color:var(--cream);font-size:clamp(2rem,7vw,6rem)}
+.hero-sub{font-size:clamp(.95rem,2vw,1.15rem);color:rgba(255,248,238,.5);max-width:520px;margin:24px auto 0;line-height:1.75;animation:fadeUp 1s .25s ease both}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:40px;animation:fadeUp 1s .4s ease both}
+.btn-p{display:inline-flex;align-items:center;gap:9px;background:linear-gradient(135deg,var(--gold),var(--accent));color:#000;font-weight:700;font-size:1rem;padding:16px 36px;border-radius:60px;border:none;cursor:pointer;transition:transform .2s;animation:glow 2.5s ease-in-out infinite}
+.btn-p:hover{transform:scale(1.06)}
+@keyframes glow{0%,100%{box-shadow:0 0 28px rgba(245,166,35,.5),0 0 60px rgba(245,166,35,.2)}50%{box-shadow:0 0 50px rgba(245,166,35,.85),0 0 100px rgba(245,166,35,.35)}}
+.btn-g{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);color:var(--cream);font-weight:500;font-size:1rem;padding:16px 32px;border-radius:60px;cursor:pointer;transition:all .2s}
+.btn-g:hover{background:rgba(245,166,35,.12);border-color:rgba(245,166,35,.4)}
+.hero-stats{display:flex;flex-wrap:wrap;gap:10px 40px;justify-content:center;margin-top:56px;animation:fadeUp 1s .55s ease both}
+.hstat .num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;background:linear-gradient(135deg,var(--gold),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hstat .lbl{font-size:.65rem;color:rgba(255,248,238,.38);letter-spacing:.18em;text-transform:uppercase;margin-top:2px}
+.scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);text-align:center;color:rgba(255,248,238,.28);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;z-index:3;animation:fadeUp 1s 1.8s ease both}
+.scroll-hint span{display:block;animation:bob 2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+
+.mq-strip{padding:16px 0;overflow:hidden;background:rgba(245,166,35,.07);border-top:1px solid rgba(245,166,35,.15);border-bottom:1px solid rgba(245,166,35,.15)}
+.mq-track{display:flex;width:max-content;animation:mq 30s linear infinite}
+.mq-item{margin:0 36px;font-size:.82rem;font-weight:500;color:rgba(245,200,100,.8);letter-spacing:.08em;white-space:nowrap}
+@keyframes mq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+section{position:relative;overflow:hidden}
+.inner{max-width:1200px;margin:0 auto;padding:100px 28px}
+.stag{font-size:.7rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:block}
+.sh2{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,4.2rem);font-weight:700;line-height:1.05;margin-bottom:16px}
+.ssub{font-size:1rem;color:rgba(255,248,238,.5);max-width:500px;line-height:1.75;margin-bottom:52px}
+.gt{background:linear-gradient(135deg,var(--gold),var(--accent2),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+
+.rv{opacity:0;transform:translateY(44px);transition:opacity .8s ease,transform .8s ease}
+.rv.vis{opacity:1;transform:translateY(0)}
+.rvl{opacity:0;transform:translateX(-55px);transition:opacity .85s ease,transform .85s ease}
+.rvl.vis{opacity:1;transform:translateX(0)}
+.rvr{opacity:0;transform:translateX(55px);transition:opacity .85s ease,transform .85s ease}
+.rvr.vis{opacity:1;transform:translateX(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}
+
+#about{background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+@media(max-width:768px){.about-grid{grid-template-columns:1fr}}
+.about-box{perspective:1000px}
+.about-visual{position:relative;border-radius:32px;overflow:visible;transform-style:preserve-3d;transition:transform .1s}
+.av-inner{border-radius:32px;overflow:hidden;background:linear-gradient(135deg,var(--brown),var(--brown2));aspect-ratio:1;max-width:480px;border:1px solid rgba(245,166,35,.2);display:flex;align-items:center;justify-content:center;box-shadow:0 40px 100px rgba(0,0,0,.6);position:relative}
+.av-inner .big{font-size:10rem;animation:float 6s ease-in-out infinite;display:block;filter:drop-shadow(0 20px 40px rgba(0,0,0,.5))}
+.av-float{position:absolute;animation:float 6s ease-in-out infinite;font-size:3rem}
+.avf1{top:10%;right:8%;animation-delay:.5s}
+.avf2{bottom:10%;left:8%;animation-delay:1s;font-size:2.5rem}
+.avf3{bottom:12%;right:10%;animation-delay:1.5s;font-size:2.8rem}
+.av-badge{position:absolute;top:22px;left:-22px;background:rgba(10,5,0,.85);backdrop-filter:blur(16px);border:1px solid rgba(245,166,35,.3);border-radius:18px;padding:12px 18px;box-shadow:0 20px 50px rgba(0,0,0,.4);transform:translateZ(30px)}
+.av-badge .bn{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;background:linear-gradient(135deg,var(--gold),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.av-badge .bs{font-size:.62rem;color:rgba(255,248,238,.4);letter-spacing:.18em;text-transform:uppercase}
+.av-card{position:absolute;bottom:-18px;right:-22px;background:rgba(10,5,0,.8);backdrop-filter:blur(18px);border:1px solid rgba(255,248,238,.1);border-radius:18px;padding:18px 22px;box-shadow:0 24px 60px rgba(0,0,0,.5);transform:translateZ(20px)}
+.av-card .big{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;background:linear-gradient(135deg,var(--gold2),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;display:block}
+.av-card .sm{font-size:.72rem;color:rgba(255,248,238,.4);margin-top:4px}
+.pills{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+.pill{background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.22);border-radius:50px;padding:6px 16px;font-size:.8rem;color:var(--gold2)}
+
+#menu{background:linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%)}
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:44px}
+.tab{padding:9px 24px;border-radius:50px;font-size:.82rem;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:rgba(255,248,238,.5);transition:all .25s}
+.tab.a,.tab:hover{background:linear-gradient(135deg,var(--gold),var(--accent));color:#000;border-color:transparent;box-shadow:0 0 24px rgba(245,166,35,.4)}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:20px}
+.mcard{background:rgba(255,255,255,.04);border:1px solid rgba(255,248,238,.07);border-radius:22px;padding:28px 22px;cursor:default;transition:transform .3s,box-shadow .3s,border-color .3s;position:relative;overflow:hidden;transform-style:preserve-3d}
+.mcard:hover{transform:translateY(-10px) scale(1.02) rotateX(3deg);box-shadow:0 24px 70px rgba(245,166,35,.2);border-color:rgba(245,166,35,.35)}
+.mcard .ico{font-size:3.2rem;margin-bottom:14px;line-height:1;display:block}
+.mcard .nm{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--cream);margin-bottom:5px}
+.mcard .ds{font-size:.78rem;color:rgba(255,248,238,.43);line-height:1.5;margin-bottom:16px}
+.mcard .ft{display:flex;align-items:center;justify-content:space-between}
+.mcard .pr{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;background:linear-gradient(135deg,var(--gold),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.mcard .ct{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:50px;padding:3px 10px;font-size:.67rem;color:rgba(255,248,238,.35)}
+.badge-hot{position:absolute;top:14px;right:14px;background:linear-gradient(135deg,var(--gold),var(--accent));color:#000;font-size:.64rem;font-weight:700;padding:4px 10px;border-radius:50px;animation:bounce 2s ease-in-out infinite}
+
+#testi{background:linear-gradient(180deg,var(--bg) 0%,#0D0600 100%)}
+.rrow{display:flex;align-items:center;gap:18px;margin-bottom:48px}
+.rnum{font-family:'Playfair Display',serif;font-size:4rem;font-weight:900;background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.rstars{font-size:1.4rem;color:var(--gold)}
+.rlbl{font-size:.75rem;color:rgba(255,248,238,.38);letter-spacing:.12em;text-transform:uppercase}
+.cnts{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:52px}
+.cbox{flex:1;min-width:130px;background:rgba(245,166,35,.06);border:1px solid rgba(245,166,35,.18);border-radius:18px;padding:22px 16px;text-align:center}
+.cbox .cn{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:700;background:linear-gradient(135deg,var(--gold),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.cbox .cl{font-size:.67rem;color:rgba(255,248,238,.4);letter-spacing:.15em;text-transform:uppercase;margin-top:6px}
+.tscroll{overflow-x:auto;cursor:grab;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tscroll::-webkit-scrollbar{display:none}
+.ttrack{display:flex;gap:18px;padding-bottom:8px;width:max-content}
+.tcard{width:310px;flex-shrink:0;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:22px;padding:28px;transition:transform .3s,box-shadow .3s}
+.tcard:hover{transform:translateY(-7px);box-shadow:0 20px 60px rgba(245,166,35,.15);border-color:rgba(245,166,35,.25)}
+.tcard .qi{font-size:2.8rem;color:var(--gold);line-height:.8;margin-bottom:14px}
+.tcard .qt{font-size:.88rem;line-height:1.75;color:rgba(255,248,238,.7);font-style:italic;margin-bottom:18px}
+.tcard .au .name{font-weight:600;font-size:.85rem;color:var(--cream)}
+.tcard .au .city{font-size:.72rem;color:rgba(255,248,238,.38);margin-top:2px}
+.tcard .ts{font-size:.88rem;color:var(--gold);margin-top:7px}
+.drag-hint{text-align:center;font-size:.7rem;color:rgba(255,248,238,.2);letter-spacing:.15em;text-transform:uppercase;margin-top:12px}
+
+#why{background:linear-gradient(180deg,#0D0600 0%,var(--bg2) 100%)}
+.why-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px}
+.why-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,248,238,.07);border-radius:26px;padding:36px 30px;perspective:800px;cursor:default;transition:transform .4s,box-shadow .4s,border-color .4s;transform-style:preserve-3d}
+.why-card:hover{transform:translateY(-12px) rotateX(4deg) rotateY(-2deg);box-shadow:0 30px 80px rgba(245,166,35,.18);border-color:rgba(245,166,35,.3)}
+.why-ico{width:60px;height:60px;border-radius:18px;background:linear-gradient(135deg,rgba(245,166,35,.15),rgba(232,114,42,.15));border:1px solid rgba(245,166,35,.2);display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin-bottom:22px}
+.why-title{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;color:var(--cream);margin-bottom:10px}
+.why-desc{font-size:.85rem;color:rgba(255,248,238,.45);line-height:1.7}
+
+#loc{background:linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%)}
+.loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start}
+@media(max-width:768px){.loc-grid{grid-template-columns:1fr}}
+.lcard{background:rgba(255,255,255,.04);border:1px solid rgba(255,248,238,.07);border-radius:18px;padding:18px;display:flex;align-items:center;gap:16px;margin-bottom:14px;transition:border-color .3s}
+.lcard:hover{border-color:rgba(245,166,35,.3);background:rgba(245,166,35,.05)}
+.lcard-ico{width:46px;height:46px;border-radius:12px;background:rgba(245,166,35,.1);display:flex;align-items:center;justify-content:center;font-size:1.15rem;flex-shrink:0}
+.lcard .ll{font-size:.67rem;color:rgba(245,248,238,.35);letter-spacing:.15em;text-transform:uppercase;margin-bottom:3px}
+.lcard .lv{font-size:.92rem;font-weight:500;color:var(--cream)}
+.map-wrap{border-radius:24px;overflow:hidden;border:1px solid rgba(245,166,35,.2);box-shadow:0 24px 80px rgba(0,0,0,.5);height:460px}
+.map-wrap iframe{width:100%;height:100%;border:none;display:block}
+
+footer{background:linear-gradient(180deg,var(--bg) 0%,#050200 100%);border-top:1px solid rgba(245,166,35,.08)}
+.fcta{text-align:center;padding:110px 28px;position:relative;overflow:hidden}
+.fcta-orb{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:500px;border-radius:50%;background:radial-gradient(ellipse,rgba(245,166,35,.1) 0%,transparent 65%);animation:pulse2 3.5s ease-in-out infinite;pointer-events:none}
+.fcta h2{font-family:'Playfair Display',serif;font-size:clamp(3rem,8vw,7rem);font-weight:900;color:var(--cream);position:relative;z-index:1;margin-bottom:34px;line-height:.95}
+.btn-final{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--gold),var(--accent));color:#000;font-weight:700;font-size:1.1rem;padding:20px 48px;border-radius:70px;border:none;cursor:pointer;position:relative;z-index:1;transition:transform .2s;animation:glow 2s infinite}
+.btn-final:hover{transform:scale(1.08)}
+.fgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:44px;max-width:1200px;margin:0 auto;padding:0 28px 64px;border-top:1px solid rgba(255,248,238,.07);padding-top:52px}
+@media(max-width:700px){.fgrid{grid-template-columns:1fr}}
+.fbrand .ln{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:var(--cream);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.fbrand p{font-size:.8rem;color:rgba(255,248,238,.32);line-height:1.65;max-width:240px}
+.fhead{font-size:.7rem;font-weight:600;color:rgba(255,248,238,.38);letter-spacing:.22em;text-transform:uppercase;margin-bottom:18px}
+.flinks{display:flex;flex-direction:column;gap:10px}
+.flinks a{font-size:.82rem;color:rgba(255,248,238,.35);transition:color .2s}
+.flinks a:hover{color:var(--gold)}
+.fbot{max-width:1200px;margin:0 auto;padding:20px 28px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,248,238,.05)}
+.fbot p{font-size:.72rem;color:rgba(255,248,238,.2)}
+
+#wa{position:fixed;bottom:28px;right:28px;z-index:990;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#25D366,#128C7E);display:flex;align-items:center;justify-content:center;font-size:1.55rem;box-shadow:0 6px 30px rgba(37,211,102,.55);text-decoration:none;animation:bob 3s ease-in-out infinite;transition:transform .2s}
+#wa:hover{transform:scale(1.18)}
+
+@media(max-width:600px){
+  .nav-links{display:none}
+  nav{padding:14px 20px}
+  nav.s{padding:10px 20px}
+  .hero-ctas{flex-direction:column;align-items:center}
+  .btn-p,.btn-g{width:100%;justify-content:center}
+  .fbot{flex-direction:column;gap:8px;text-align:center}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<nav id="nav">
+  <div class="logo">
+    <div class="logo-icon">🎂</div>
+    <div class="logo-text">
+      <div class="n">Ashoka Iceland</div>
+      <div class="s">Bakery · Rajapalayam</div>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#menu">Menu</a>
+    <a href="#testi">Reviews</a>
+    <a href="#loc">Location</a>
+  </div>
+  <div style="display:flex;gap:10px">
+    <a href="https://www.google.com/maps/place/Ashoka+Iceland/@9.4595527,77.5588987,17z" target="_blank" class="btn-g" style="padding:8px 18px;font-size:0.75rem">📍 Visit Store</a>
+    <a href="https://wa.me/919943774606?text=Hi!%20I'd%20like%20to%20place%20an%20order." target="_blank" class="btn-nav">💬 Order</a>
+  </div>
+</nav>
+
+<section id="hero">
+  <canvas id="canvas"></canvas>
+  <div class="hero-layers">
+    <div class="hl hl1"></div>
+    <div class="hl hl2"></div>
+    <div class="hl hl3"></div>
+  </div>
+  <div class="floater" style="top:12%;left:6%;animation-delay:0s">🎂</div>
+  <div class="floater" style="top:16%;right:7%;font-size:2.8rem;animation-delay:.8s">🥐</div>
+  <div class="floater" style="top:62%;left:4%;font-size:2.5rem;animation-delay:1.4s">🍞</div>
+  <div class="floater" style="top:68%;right:5%;font-size:2.8rem;animation-delay:.3s">🧁</div>
+  <div class="floater" style="top:35%;left:2%;font-size:2rem;animation-delay:2s">🍰</div>
+  <div class="floater" style="top:78%;left:44%;font-size:2.3rem;animation-delay:2.5s">🍩</div>
+  <div class="floater" style="top:10%;left:46%;font-size:1.7rem;animation-delay:1s">🥧</div>
+  <div class="floater" style="top:48%;right:3%;font-size:1.9rem;animation-delay:1.7s">🍪</div>
+
+  <div class="hero-content">
+    <div class="hero-badge"><span class="badge-dot"></span> Rajapalayam's Finest Bakery</div>
+    <h1 class="hero-h1">
+      <span class="t1">Baked</span>
+      <span class="t2">with Love,</span>
+      <span class="t3">Ashoka Iceland</span>
+    </h1>
+    <p class="hero-sub">Fresh-baked cakes, pastries, breads & desserts — crafted daily with the finest ingredients. Rajapalayam's most beloved bakery since 2010.</p>
+    <div class="hero-ctas">
+      <a href="https://wa.me/919943774606?text=Hi!%20I'd%20like%20to%20place%20an%20order." target="_blank" class="btn-p">💬 WhatsApp Order Now</a>
+      <a href="https://www.google.com/maps/place/Ashoka+Iceland/@9.4595527,77.5588987,17z" target="_blank" class="btn-g">📍 Visit Our Store</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><div class="num">100+</div><div class="lbl">Varieties</div></div>
+      <div class="hstat"><div class="num">5000+</div><div class="lbl">Happy Customers</div></div>
+      <div class="hstat"><div class="num">4.8 ★</div><div class="lbl">Google Rating</div></div>
+      <div class="hstat"><div class="num">₹20+</div><div class="lbl">Starting Price</div></div>
+    </div>
+  </div>
+  <div class="scroll-hint"><span>Scroll</span><span>↓</span></div>
+</section>
+
+<div class="mq-strip">
+  <div class="mq-track" id="mq">
+    <span class="mq-item">🎂 Custom Cakes</span><span class="mq-item">🥐 Fresh Croissants</span><span class="mq-item">🍞 Artisan Bread</span><span class="mq-item">🧁 Cupcakes</span><span class="mq-item">🍰 Pastries</span><span class="mq-item">🍩 Donuts</span><span class="mq-item">🍪 Cookies</span><span class="mq-item">🥧 Pies</span><span class="mq-item">❤️ Made Fresh Daily</span><span class="mq-item">📍 Rajapalayam</span>
+    <span class="mq-item">🎂 Custom Cakes</span><span class="mq-item">🥐 Fresh Croissants</span><span class="mq-item">🍞 Artisan Bread</span><span class="mq-item">🧁 Cupcakes</span><span class="mq-item">🍰 Pastries</span><span class="mq-item">🍩 Donuts</span><span class="mq-item">🍪 Cookies</span><span class="mq-item">🥧 Pies</span><span class="mq-item">❤️ Made Fresh Daily</span><span class="mq-item">📍 Rajapalayam</span>
+  </div>
+</div>
+
+<section id="about">
+  <div class="inner">
+    <div class="about-grid">
+      <div class="rvl">
+        <div class="about-box" id="av-box">
+          <div class="about-visual">
+            <div class="av-inner">
+              <span class="big">🎂</span>
+              <span class="av-float avf1">🥐</span>
+              <span class="av-float avf2">🍞</span>
+              <span class="av-float avf3">🧁</span>
+            </div>
+            <div class="av-badge"><div class="bn">Est. 2010</div><div class="bs">Trusted Bakery</div></div>
+            <div class="av-card"><span class="big">5000+</span><div class="sm">Happy customers served</div></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <span class="stag rv d1">Our Story</span>
+        <h2 class="sh2 rv d2">More Than a Bakery —<br><em class="gt" style="font-style:italic">It's a Tradition</em></h2>
+        <p class="rv d3" style="color:rgba(255,248,238,.6);line-height:1.8;margin-bottom:14px">Since 2010, Ashoka Iceland has been baking joy into every corner of Rajapalayam. From custom celebration cakes to daily fresh bread, every product is a labour of love.</p>
+        <p class="rv d4" style="color:rgba(255,248,238,.44);font-size:.9rem;line-height:1.75;margin-bottom:26px">We believe in quality you can taste — premium ingredients, time-honoured recipes, and warmth baked into every bite.</p>
+        <div class="pills rv d4">
+          <span class="pill">Est. 2010</span>
+          <span class="pill">Custom Cakes</span>
+          <span class="pill">Fresh Daily</span>
+          <span class="pill">100+ Varieties</span>
+        </div>
+        <div class="rv d5" style="display:flex;gap:14px">
+          <a href="https://wa.me/919943774606?text=Hi!%20I'd%20like%20to%20order%20from%20your%20bakery." target="_blank" class="btn-p">💬 Order Now</a>
+          <a href="https://www.google.com/maps/place/Ashoka+Iceland/@9.4595527,77.5588987,17z" target="_blank" class="btn-g" style="padding:16px 28px">📍 Get Directions</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="inner" style="padding-top:70px">
+    <div class="rv" style="text-align:center;margin-bottom:14px">
+      <span class="stag">What We Bake</span>
+      <h2 class="sh2">Something for <em class="gt" style="font-style:italic">Every Craving</em></h2>
+      <p class="ssub" style="margin:0 auto 40px">Freshly baked every morning — cakes, pastries, breads & more.</p>
+    </div>
+    <div class="tabs rv" id="tabs">
+      <button class="tab a" data-cat="All">All</button>
+      <button class="tab" data-cat="Cakes">Cakes</button>
+      <button class="tab" data-cat="Pastries">Pastries</button>
+      <button class="tab" data-cat="Breads">Breads</button>
+      <button class="tab" data-cat="Cookies">Cookies</button>
+    </div>
+    <div class="mgrid" id="mgrid"></div>
+    <div style="text-align:center;margin-top:44px;display:flex;gap:14px;justify-content:center" class="rv">
+      <a href="https://wa.me/919943774606?text=Hi!%20I'd%20like%20to%20place%20a%20bulk%20order." target="_blank" class="btn-p">💬 Bulk Order WhatsApp</a>
+      <a href="#loc" class="btn-g" style="padding:16px 28px">📍 Find Store Location</a>
+    </div>
+  </div>
+</section>
+
+<section id="testi">
+  <div class="inner">
+    <div style="display:grid;grid-template-columns:1fr auto;gap:20px;align-items:end;margin-bottom:44px" class="rv">
+      <div>
+        <span class="stag">Reviews</span>
+        <h2 class="sh2">Loved by <em class="gt" style="font-style:italic">Rajapalayam</em></h2>
+      </div>
+    </div>
+    <div class="cnts rv">
+      <div class="cbox"><div class="cn" data-target="5000">0</div><div class="cl">Happy Customers</div></div>
+      <div class="cbox"><div class="cn" data-target="100">0</div><div class="cl">Varieties</div></div>
+      <div class="cbox"><div class="cn" data-target="15">0</div><div class="cl">Years Baking</div></div>
+      <div class="cbox"><div class="cn" data-target="4">4.8 ★</div><div class="cl">Google Rating</div></div>
+    </div>
+    <div class="rrow rv">
+      <div class="rnum">4.8</div>
+      <div><div class="rstars">★★★★★</div><div class="rlbl">5000+ happy customers · Google Maps</div></div>
+    </div>
+    <div class="tscroll rv" id="tw"><div class="ttrack" id="tt"></div></div>
+    <p class="drag-hint">← Drag to explore more reviews →</p>
+  </div>
+</section>
+
+<section id="why">
+  <div class="inner">
+    <div class="rv" style="text-align:center;margin-bottom:60px">
+      <span class="stag">Why Choose Us</span>
+      <h2 class="sh2">Baked <em class="gt" style="font-style:italic">Different</em></h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card rv d1"><div class="why-ico">🌾</div><div class="why-title">Premium Ingredients</div><div class="why-desc">We source only the finest flour, dairy and fruits. No shortcuts — ever. Every bite reflects our commitment to quality.</div></div>
+      <div class="why-card rv d2"><div class="why-ico">🔥</div><div class="why-title">Baked Fresh Daily</div><div class="why-desc">Nothing sits on the shelf. Every product is baked fresh each morning so you always get maximum freshness and flavour.</div></div>
+      <div class="why-card rv d3"><div class="why-ico">🎂</div><div class="why-title">Custom Orders</div><div class="why-desc">Birthdays, weddings, celebrations — we craft custom cakes with your design, flavour and message. Just ask!</div></div>
+      <div class="why-card rv d4"><div class="why-ico">💝</div><div class="why-title">15 Years of Trust</div><div class="why-desc">Since 2010, thousands of Rajapalayam families have celebrated their sweetest moments with Ashoka Iceland.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="loc">
+  <div class="inner">
+    <div class="rv" style="text-align:center;margin-bottom:64px">
+      <span class="stag">Find Us</span>
+      <h2 class="sh2">Easy to Find. <em class="gt" style="font-style:italic">Hard to Forget.</em></h2>
+      <p class="ssub" style="margin:0 auto">We're right here in Rajapalayam — fresh bakes waiting for you every day.</p>
+    </div>
+    <div class="loc-grid">
+      <div class="rvl">
+        <div class="lcard"><div class="lcard-ico">📍</div><div><div class="ll">Address</div><div class="lv">Rajapalayam, Virudhunagar Dist., Tamil Nadu</div></div></div>
+        <div class="lcard"><div class="lcard-ico">🕐</div><div><div class="ll">Hours</div><div class="lv">Open Daily — Morning to Evening</div></div></div>
+        <div class="lcard"><div class="lcard-ico">📞</div><div><div class="ll">Phone</div><div class="lv">9943774606</div></div></div>
+        <div class="lcard"><div class="lcard-ico">🎂</div><div><div class="ll">Speciality</div><div class="lv">Custom Cakes & Fresh Baked Goods</div></div></div>
+        <div style="display:flex;gap:12px;margin-top:22px">
+          <a href="https://www.google.com/maps/place/Ashoka+Iceland/@9.4595527,77.5588987,17z" target="_blank" class="btn-g" style="flex:1;justify-content:center;padding:14px">📍 Visit Us</a>
+          <a href="https://wa.me/919943774606?text=Hi!%20I'm%20looking%20for%20a%20specific%20bakery%20item." target="_blank" class="btn-p" style="flex:1;justify-content:center;padding:14px">💬 WhatsApp Order</a>
+        </div>
+      </div>
+      <div class="rvr">
+        <div class="map-wrap">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.2!2d77.5563!3d9.4595527!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b06e82bb51f0b01%3A0x525ec7e94d7be570!2sAshoka%20Iceland!5e0!3m2!1sen!2sin!4v1711111111111"
+            loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" title="Ashoka Iceland Bakery">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fcta">
+    <div class="fcta-orb"></div>
+    <span class="stag" style="position:relative;z-index:1">Don't Wait</span>
+    <h2>Craving Something<br><em class="gt" style="font-style:italic">Fresh?</em></h2>
+    <div style="display:flex;gap:16px;justify-content:center;position:relative;z-index:1;margin-top:20px">
+      <a href="https://wa.me/919943774606?text=Hi!%20I'd%20like%20to%20place%20an%20order%20from%20your%20bakery." target="_blank" class="btn-final">💬 Order on WhatsApp</a>
+      <a href="https://www.google.com/maps/place/Ashoka+Iceland/@9.4595527,77.5588987,17z" target="_blank" class="btn-g" style="padding:20px 48px;border-radius:70px;background:rgba(255,255,255,0.1)">📍 Visit Store Location</a>
+    </div>
+  </div>
+  <div class="fgrid">
+    <div class="fbrand">
+      <div class="ln"><span>🎂</span> Ashoka Iceland</div>
+      <p>Rajapalayam's most beloved bakery since 2010. Fresh-baked cakes, breads & pastries made with love every single day.</p>
+    </div>
+    <div>
+      <div class="fhead">Navigate</div>
+      <div class="flinks">
+        <a href="#about">About</a>
+        <a href="#menu">Menu</a>
+        <a href="#testi">Reviews</a>
+        <a href="#loc">Location</a>
+      </div>
+    </div>
+    <div>
+      <div class="fhead">Connect</div>
+      <div class="flinks">
+        <a href="https://www.google.com/maps/place/Ashoka+Iceland/@9.4595527,77.5588987,17z" target="_blank">📍 Google Maps</a>
+        <a href="https://wa.me/919943774606" target="_blank">💬 WhatsApp Us</a>
+      </div>
+    </div>
+  </div>
+  <div class="fbot">
+    <p>© 2025 Ashoka Iceland Bakery. Made with ❤️ in Rajapalayam.</p>
+    <p>Fresh bakes. Happy smiles. Every day.</p>
+  </div>
+</footer>
+
+<a href="https://wa.me/919943774606" target="_blank" id="wa" title="Chat on WhatsApp">💬</a>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script>
+let sb;
+if(typeof SUPABASE_URL !== 'undefined' && SUPABASE_URL !== 'YOUR_SUPABASE_URL') {
+  sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+}
+
+/* PROGRESS */
+window.addEventListener('scroll',()=>{
+  const pct=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100;
+  document.getElementById('prog').style.width=pct+'%';
+  document.getElementById('nav').classList.toggle('s',window.scrollY>60);
+});
+
+/* CANVAS PARTICLES */
+(function(){
+  const cvs=document.getElementById('canvas'),ctx=cvs.getContext('2d');
+  let W,H,pts=[];
+  function resize(){W=cvs.width=window.innerWidth;H=cvs.height=window.innerHeight}
+  resize();window.addEventListener('resize',resize);
+  function mkPt(){return{x:Math.random()*W,y:Math.random()*H,r:Math.random()*2+.5,dx:(Math.random()-.5)*.4,dy:-Math.random()*.6-.2,a:Math.random()*.7+.3,da:-.003}}
+  for(let i=0;i<120;i++)pts.push(mkPt());
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    pts.forEach((p,i)=>{
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(245,166,35,${p.a})`;
+      ctx.fill();
+      p.x+=p.dx;p.y+=p.dy;p.a+=p.da;
+      if(p.a<=0||p.y<-10)pts[i]=mkPt();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* REVEAL */
+const rvObs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vis');rvObs.unobserve(x.target)}}),{threshold:.12});
+document.querySelectorAll('.rv,.rvl,.rvr').forEach(el=>rvObs.observe(el));
+
+/* 3D TILT */
+const avBox=document.getElementById('av-box');
+avBox&&avBox.addEventListener('mousemove',e=>{
+  const r=avBox.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+  avBox.querySelector('.about-visual').style.transform=`rotateY(${x*18}deg) rotateX(${-y*12}deg) scale(1.03)`;
+});
+avBox&&avBox.addEventListener('mouseleave',()=>avBox.querySelector('.about-visual').style.transform='');
+
+/* COUNTER */
+function animCnt(el,tgt){
+  if(isNaN(tgt))return;
+  let v=0;const s=Math.ceil(tgt/80);
+  const t=setInterval(()=>{v=Math.min(v+s,tgt);el.textContent=v.toLocaleString()+(tgt>=100?'+':'');if(v>=tgt)clearInterval(t)},18);
+}
+const cObs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){animCnt(x.target,parseInt(x.target.dataset.target));cObs.unobserve(x.target)}}),{threshold:.5});
+document.querySelectorAll('.cn[data-target]').forEach(el=>cObs.observe(el));
+
+/* MENU */
+let items = [
+  {cat:'Cakes',e:'🎂',n:'Birthday Cake',d:'Custom decorated celebration cakes',p:'₹350',hot:true},
+  {cat:'Cakes',e:'🍫',n:'Black Forest',d:'Cherries & chocolate cream layers',p:'₹280',hot:false},
+  {cat:'Pastries',e:'🥐',n:'Croissant',d:'Buttery, flaky, golden perfection',p:'₹45',hot:true},
+  {cat:'Breads',e:'🍞',n:'White Bread Loaf',d:'Soft, fresh-baked sandwich bread',p:'₹50',hot:false},
+  {cat:'Cookies',e:'🍪',n:'Choco Chip Cookies',d:'Classic American-style cookies',p:'₹30',hot:true},
+]; // Fallback items if Supabase not connected
+
+async function logInquiry(itemName) {
+  if(!sb) return;
+  await sb.from('inquiries').insert([{ item_name: itemName, customer_info: 'Website User' }]);
+}
+
+async function fetchMenu() {
+  if(!sb) {
+    renderMenu('All');
+    return;
+  }
+  const { data, error } = await sb.from('menu_items').select('*').order('name');
+  if(!error && data && data.length > 0) {
+    items = data.map(it => ({
+      cat: it.category,
+      e: it.emoji,
+      n: it.name,
+      d: it.description,
+      p: it.price,
+      hot: it.is_best_seller
+    }));
+  }
+  renderMenu('All');
+}
+
+function renderMenu(cat){
+  const g=document.getElementById('mgrid');
+  const f=cat==='All'?items:items.filter(i=>i.cat===cat);
+  g.innerHTML=f.map((it,i)=>`
+    <div class="mcard" style="animation:fadeUp .5s ${i*.06}s ease both">
+      ${it.hot?'<span class="badge-hot">🔥 Best Seller</span>':''}
+      <span class="ico">${it.e}</span>
+      <div class="nm">${it.n}</div>
+      <div class="ds">${it.d}</div>
+      <div class="ft">
+        <span class="pr">${it.p}</span>
+        <a href="https://wa.me/919943774606?text=Hi!%20I'd%20like%20to%20order%20the%20${encodeURIComponent(it.n)}." 
+           onclick="logInquiry('${it.n}')"
+           target="_blank" class="ct" style="background:var(--gold);color:#000;font-weight:700;transition:transform .2s">Order</a>
+      </div>
+    </div>
+  `).join('');
+}
+fetchMenu();
+document.getElementById('tabs').addEventListener('click',e=>{
+  if(!e.target.classList.contains('tab'))return;
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('a'));
+  e.target.classList.add('a');
+  renderMenu(e.target.dataset.cat);
+});
+
+const testis=[
+  {n:'Ramesh K.',c:'Rajapalayam',s:5,t:'The best bakery in town! Their custom birthday cake for my daughter was gorgeous and tasted incredible. Everyone at the party loved it.',e:'🎂'},
+  {n:'Meena S.',c:'Rajapalayam',s:5,t:'Fresh croissants every morning — perfectly flaky and buttery. I stop here every day on my way to work. Nothing beats Ashoka Iceland!',e:'🥐'},
+  {n:'Suresh P.',c:'Srivilliputhur',s:5,t:'Drove 40 minutes just for their Black Forest cake. Layers were perfect, not too sweet, absolutely fresh. Worth every kilometre!',e:'🍫'},
+  {n:'Priya T.',c:'Rajapalayam',s:5,t:'Ordered a wedding cake and was blown away by the quality. Beautifully designed, delicious flavour. Will use them for all our celebrations.',e:'💍'},
+  {n:'Arjun M.',c:'Sankarankoil',s:4,t:'The garlic bread here is addictive! My kids refuse to eat any other bakery bread now. Quality is outstanding for the price.',e:'🧄'},
+];
+const tt=document.getElementById('tt');
+tt.innerHTML=testis.map(t=>`<div class="tcard"><div class="qi">"</div><div class="qt">${t.t}</div><div class="au"><div class="name">${t.n}</div><div class="city">${t.c}</div><div class="ts">${'★'.repeat(t.s)}${'☆'.repeat(5-t.s)}</div></div></div>`).join('');
+
+(()=>{
+  const w=document.getElementById('tw');
+  let dn=false,sx,sl;
+  w.addEventListener('mousedown',e=>{dn=true;sx=e.pageX-w.offsetLeft;sl=w.scrollLeft;w.style.cursor='grabbing'});
+  w.addEventListener('mouseleave',()=>{dn=false;w.style.cursor='grab'});
+  w.addEventListener('mouseup',()=>{dn=false;w.style.cursor='grab'});
+  w.addEventListener('mousemove',e=>{if(!dn)return;e.preventDefault();w.scrollLeft=sl-(e.pageX-w.offsetLeft-sx)*1.5});
+})();
+
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  document.querySelectorAll('.floater').forEach((f,i)=>{f.style.transform=`translateY(${y*(i%2?-.08:.06)}px) rotate(${y*.01*(i%2?1:-1)}deg)`});
+});
+</script>
+</body>
+</html>
